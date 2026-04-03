@@ -47,8 +47,16 @@
     @keyframes fadeR{from{opacity:0;transform:translateX(30px);}to{opacity:1;transform:translateX(0);}}
     .can-glow{position:absolute;inset:-40px;background:radial-gradient(ellipse,rgba(139,26,26,.45) 0%,transparent 70%);border-radius:50%;animation:pulse 4s ease-in-out infinite;}
     @keyframes pulse{0%,100%{opacity:.6;transform:scale(1);}50%{opacity:1;transform:scale(1.08);}}
-    #canCanvas{width:320px;height:460px;display:block;position:relative;z-index:1;}
-    .splash{position:absolute;bottom:-20px;left:50%;transform:translateX(-50%);}
+    .vinyl-wrap{position:relative;width:420px;height:420px;display:flex;justify-content:center;align-items:center;}
+    .vinyl-disc{width:420px;height:420px;border-radius:50%;background:repeating-radial-gradient(circle at center,#0d0d0d 0px,#0d0d0d 1px,#1c1c1c 1px,#1c1c1c 3px,#151515 3px,#151515 5px,#222 5px,#222 6px);animation:vinylSpin 5s linear infinite;position:relative;display:flex;justify-content:center;align-items:center;box-shadow:0 0 80px rgba(139,26,26,.55),0 24px 80px rgba(0,0,0,.9),inset 0 0 30px rgba(0,0,0,.5);}
+    .vinyl-disc::before{content:'';position:absolute;inset:0;border-radius:50%;background:radial-gradient(ellipse at 35% 30%,rgba(255,255,255,.06) 0%,transparent 55%);}
+    .vinyl-disc::after{content:'';position:absolute;inset:6px;border-radius:50%;border:1px solid rgba(255,255,255,.04);}
+    .vinyl-label{width:172px;height:172px;border-radius:50%;overflow:hidden;position:relative;z-index:2;box-shadow:0 0 0 3px rgba(200,147,74,.3),0 0 0 6px rgba(0,0,0,.6),0 4px 20px rgba(0,0,0,.8);}
+    .vinyl-label img{width:100%;height:100%;object-fit:cover;display:block;}
+    .vinyl-hole{position:absolute;width:16px;height:16px;background:#0d0d0d;border-radius:50%;z-index:3;border:1px solid rgba(255,255,255,.15);box-shadow:0 0 6px rgba(0,0,0,.8);}
+    .vinyl-arm{position:absolute;top:-18px;right:-22px;width:120px;height:4px;background:linear-gradient(90deg,#999,#ccc,#888);border-radius:4px;transform-origin:right center;transform:rotate(22deg);z-index:10;box-shadow:0 2px 8px rgba(0,0,0,.6);}
+    .vinyl-arm::after{content:'';position:absolute;left:-8px;top:-8px;width:20px;height:20px;background:radial-gradient(circle,#bbb,#888);border-radius:50%;box-shadow:0 2px 6px rgba(0,0,0,.5);}
+    @keyframes vinylSpin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
     .stats{background:#2A0808;padding:2rem 4rem;display:flex;justify-content:center;gap:6rem;border-top:1px solid rgba(200,147,74,.15);border-bottom:1px solid rgba(200,147,74,.15);}
     .stat{text-align:center;}
     .stat-num{font-family:var(--font-display);font-size:2.6rem;font-weight:900;color:var(--gold);display:block;line-height:1;}
@@ -85,12 +93,21 @@
     .footer-col ul li a:hover{color:var(--gold);}
     .footer-bottom{max-width:1200px;margin:2.5rem auto 0;padding-top:1.5rem;border-top:1px solid rgba(245,230,216,.05);display:flex;justify-content:space-between;}
     .footer-copy{font-size:.72rem;color:rgba(245,230,216,.2);}
+    .gallery{padding:5rem 4rem;max-width:1200px;margin:0 auto;}
+    .gallery-header{text-align:center;margin-bottom:3rem;}
+    .gallery-grid{display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:280px 280px;gap:12px;}
+    .gallery-item{overflow:hidden;border-radius:16px;position:relative;cursor:none;}
+    .gallery-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease;}
+    .gallery-item:hover img{transform:scale(1.04);}
+    .gallery-item.tall{grid-row:span 2;}
+    .gallery-item.wide{grid-column:span 2;}
+    .gallery-item::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 50%,rgba(26,5,5,.55));border-radius:16px;pointer-events:none;}
     .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease;}
     .reveal.visible{opacity:1;transform:translateY(0);}
     .reveal-delay-1{transition-delay:.12s;}
     .reveal-delay-2{transition-delay:.24s;}
-    @media(max-width:900px){nav{padding:1.2rem 2rem;}.hero-content{grid-template-columns:1fr;text-align:center;padding:0 2rem;}.hero-visual{order:-1;}.hero-sub{margin:0 auto 2rem;}.hero-cta{justify-content:center;}.stats{gap:2.5rem;flex-wrap:wrap;padding:2rem;}.features{padding:5rem 2rem;}.cards{grid-template-columns:1fr;}.highlight{padding:5rem 2rem;}footer{padding:3rem 2rem;}.footer-inner{grid-template-columns:1fr 1fr;gap:2rem;}}
-    @media(max-width:600px){.nav-links{display:none;}.footer-inner{grid-template-columns:1fr;}}
+    @media(max-width:900px){nav{padding:1.2rem 2rem;}.hero-content{grid-template-columns:1fr;text-align:center;padding:0 2rem;}.hero-visual{order:-1;}.hero-sub{margin:0 auto 2rem;}.hero-cta{justify-content:center;}.stats{gap:2.5rem;flex-wrap:wrap;padding:2rem;}.features{padding:5rem 2rem;}.cards{grid-template-columns:1fr;}.highlight{padding:5rem 2rem;}footer{padding:3rem 2rem;}.footer-inner{grid-template-columns:1fr 1fr;gap:2rem;}.vinyl-wrap,.vinyl-disc{width:300px;height:300px;}.vinyl-label{width:120px;height:120px;}.gallery{padding:4rem 2rem;}.gallery-grid{grid-template-columns:1fr 1fr;grid-template-rows:220px 220px 220px;}.gallery-item.tall{grid-row:span 2;}.gallery-item.wide{grid-column:span 2;}}
+    @media(max-width:600px){.nav-links{display:none;}.footer-inner{grid-template-columns:1fr;}.vinyl-wrap,.vinyl-disc{width:260px;height:260px;}.vinyl-label{width:104px;height:104px;}.gallery-grid{grid-template-columns:1fr;grid-template-rows:auto;}.gallery-item.tall,.gallery-item.wide{grid-row:unset;grid-column:unset;}.gallery-item{height:240px;}}
   </style>
 </head>
 <body>
@@ -120,8 +137,15 @@
       </div>
       <div class="hero-visual">
         <div class="can-glow"></div>
-        <canvas id="canCanvas"></canvas>
-        <svg class="splash" width="280" height="50" viewBox="0 0 280 50"><ellipse cx="140" cy="25" rx="110" ry="16" fill="rgba(139,26,26,.2)"/></svg>
+        <div class="vinyl-wrap">
+          <div class="vinyl-disc">
+            <div class="vinyl-label">
+              <img src="Celeb poster.webp" alt="Dr Pepper Poster" />
+            </div>
+            <div class="vinyl-hole"></div>
+          </div>
+          <div class="vinyl-arm"></div>
+        </div>
       </div>
     </div>
   </section>
@@ -143,6 +167,26 @@
       <a href="mixer.html" class="card reveal reveal-delay-2"><div class="card-icon">🎚️</div><div class="card-title">Flavor Mixer</div><div class="card-desc">Dial in your perfect Dr Pepper experience. Adjust the sliders to discover your ideal blend.</div><div class="card-link">Try the Mixer →</div></a>
     </div>
   </section>
+  <section class="gallery">
+    <div class="gallery-header reveal">
+      <div class="section-tag">The Culture</div>
+      <h2>Bold in <em>Every Frame</em></h2>
+    </div>
+    <div class="gallery-grid reveal">
+      <div class="gallery-item tall">
+        <img src="DrPepper_Yung_Gravy.jpg" alt="Dr Pepper x Yung Gravy" />
+      </div>
+      <div class="gallery-item">
+        <img src="dr pepper in glass with ice.jpg" alt="Dr Pepper on Ice" />
+      </div>
+      <div class="gallery-item">
+        <img src="dr pepper into water.jpg" alt="Dr Pepper Pour" />
+      </div>
+      <div class="gallery-item wide">
+        <img src="dr-pepper-ice.webp" alt="Dr Pepper Ice" />
+      </div>
+    </div>
+  </section>
   <div class="highlight">
     <div class="highlight-inner reveal">
       <div class="big-num">23</div>
@@ -160,17 +204,7 @@
     </div>
     <div class="footer-bottom"><div class="footer-copy">© 2025 Dr Pepper Fan Site. Not affiliated with Keurig Dr Pepper.</div><div class="footer-copy">Fan-made concept</div></div>
   </footer>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script>
-    (function(){const canvas=document.getElementById('canCanvas'),W=320,H=460;canvas.width=W*devicePixelRatio;canvas.height=H*devicePixelRatio;const renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true});renderer.setPixelRatio(devicePixelRatio);renderer.setSize(W,H);renderer.outputEncoding=THREE.sRGBEncoding;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.2;const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(35,W/H,.1,100);camera.position.set(0,.3,5.5);camera.lookAt(0,0,0);scene.add(new THREE.AmbientLight(0xffeedd,.5));const kl=new THREE.DirectionalLight(0xffffff,2.5);kl.position.set(3,5,4);scene.add(kl);const fl=new THREE.DirectionalLight(0xff9966,.8);fl.position.set(-4,1,2);scene.add(fl);const rl=new THREE.DirectionalLight(0xffd9b0,1.2);rl.position.set(0,-3,-4);scene.add(rl);function makeLabel(){const c=document.createElement('canvas');c.width=1024;c.height=1024;const ctx=c.getContext('2d');const bg=ctx.createLinearGradient(0,0,1024,0);bg.addColorStop(0,'#5A0A0A');bg.addColorStop(.18,'#8B1A1A');bg.addColorStop(.4,'#C0392B');bg.addColorStop(.6,'#A52020');bg.addColorStop(.82,'#7B1212');bg.addColorStop(1,'#4A0808');ctx.fillStyle=bg;ctx.fillRect(0,0,1024,1024);ctx.fillStyle='#3D0808';ctx.fillRect(0,0,1024,102);ctx.fillRect(0,900,1024,124);ctx.globalAlpha=.92;ctx.fillStyle='#fff';ctx.beginPath();ctx.moveTo(0,307);ctx.lineTo(1024,271);ctx.lineTo(1024,322);ctx.lineTo(0,360);ctx.closePath();ctx.fill();ctx.globalAlpha=1;ctx.textAlign='center';ctx.shadowColor='rgba(0,0,0,.5)';ctx.shadowBlur=8;ctx.font='italic bold 110px Georgia,serif';ctx.fillStyle='#fff';ctx.fillText('Dr',512,532);ctx.font='bold 115px Georgia,serif';ctx.fillText('PEPPER',512,690);const shine=ctx.createLinearGradient(256,0,563,0);shine.addColorStop(0,'rgba(255,255,255,0)');shine.addColorStop(.4,'rgba(255,255,255,.08)');shine.addColorStop(.5,'rgba(255,255,255,.18)');shine.addColorStop(.6,'rgba(255,255,255,.06)');shine.addColorStop(1,'rgba(255,255,255,0)');ctx.fillStyle=shine;ctx.fillRect(0,0,1024,1024);const t=new THREE.CanvasTexture(c);t.encoding=THREE.sRGBEncoding;return t;}
-    const alMat=new THREE.MeshStandardMaterial({color:0xcccccc,roughness:.2,metalness:.95}),bodyMat=new THREE.MeshStandardMaterial({map:makeLabel(),roughness:.25,metalness:.55}),grp=new THREE.Group();
-    grp.add(new THREE.Mesh(new THREE.CylinderGeometry(.82,.82,2.6,128,1,true),bodyMat));
-    [[[.82,.82,.04,64],alMat,[0,1.32,0]],[[.52,.82,.28,64,1,true],alMat,[0,1.46,0]],[[.52,.52,.04,64],alMat,[0,1.62,0]],[[.82,.70,.22,64,1,true],alMat,[0,-1.41,0]],[[.70,.70,.04,64],alMat,[0,-1.53,0]]].forEach(([g,m,p])=>{const mesh=new THREE.Mesh(new THREE.CylinderGeometry(...g),m);mesh.position.set(...p);grp.add(mesh);});
-    const tab=new THREE.Mesh(new THREE.TorusGeometry(.14,.025,12,40),alMat);tab.position.set(0,1.68,.2);tab.rotation.x=Math.PI/2.2;grp.add(tab);
-    grp.position.y=-.1;scene.add(grp);
-    let tx=0,ty=0,cx=0,cy=0,t=0;
-    document.addEventListener('mousemove',e=>{tx=(e.clientX/innerWidth)*2-1;ty=(e.clientY/innerHeight)*2-1;});
-    (function animate(){requestAnimationFrame(animate);t+=.012;cx+=(tx-cx)*.04;cy+=(ty-cy)*.04;grp.rotation.y=cx*.6+t*.4;grp.rotation.x=cy*-.06;grp.position.y=Math.sin(t*.9)*.12-.1;grp.rotation.z=Math.sin(t*.6)*.04;renderer.render(scene,camera);})();})();
     const cur=document.getElementById('cursor'),ring=document.getElementById('cursorRing');let mx=0,my=0,rx=0,ry=0;
     document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.transform=`translate(${mx-6}px,${my-6}px)`;});
     (function animR(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.transform=`translate(${rx-18}px,${ry-18}px)`;requestAnimationFrame(animR);})();
