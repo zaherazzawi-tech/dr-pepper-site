@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dr Pepper Flavors — All 12 Varieties</title>
+  <meta name="description" content="Explore the full Dr Pepper flavor lineup — from the original classic to Zero Sugar, Cream Soda, Dark Berry and more."/>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%238B1A1A'/><text x='50' y='58' text-anchor='middle' font-family='Georgia,serif' font-size='36' font-weight='bold' fill='%23C8934A'>DP</text></svg>"/>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-J2REWFM5JJ"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-J2REWFM5JJ');</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    :root{--red:#8B1A1A;--dark:#1A0505;--light:#F5E6D8;--gold:#C8934A;--cream:#FAF3EC;--font-display:'Playfair Display',serif;--font-body:'DM Sans',sans-serif;}
+    html{scroll-behavior:smooth;}body{background:var(--dark);color:var(--light);font-family:var(--font-body);overflow-x:hidden;cursor:none;}
+    .cursor{width:12px;height:12px;background:var(--gold);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;mix-blend-mode:difference;}
+    .cursor-ring{width:36px;height:36px;border:1.5px solid var(--gold);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transition:transform .35s ease,width .2s,height .2s;opacity:.6;}
+    .cursor-ring.hovered{width:56px;height:56px;opacity:1;}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.4rem 4rem;display:flex;align-items:center;justify-content:space-between;background:rgba(26,5,5,.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(200,147,74,.1);}
+    .nav-logo{font-family:var(--font-display);font-size:1.4rem;font-weight:900;color:var(--gold);text-decoration:none;}
+    .nav-links{display:flex;gap:2rem;list-style:none;align-items:center;}
+    .nav-links a{color:var(--light);text-decoration:none;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;opacity:.65;transition:opacity .2s,color .2s;}
+    .nav-links a:hover,.nav-links a.active{opacity:1;color:var(--gold);}
+    .nav-cta{background:var(--gold)!important;color:var(--dark)!important;padding:.5rem 1.3rem;border-radius:100px;opacity:1!important;font-weight:500;}
+    .page-hero{padding:10rem 4rem 5rem;max-width:1200px;margin:0 auto;}
+    .page-tag{font-size:.7rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;display:flex;align-items:center;gap:.75rem;}
+    .page-tag::before{content:'';display:inline-block;width:28px;height:1px;background:var(--gold);}
+    h1{font-family:var(--font-display);font-size:clamp(3rem,6vw,5.5rem);font-weight:900;line-height:.95;color:var(--cream);margin-bottom:1.2rem;}
+    h1 em{font-style:italic;color:var(--gold);}
+    .page-sub{font-size:1rem;line-height:1.75;color:rgba(245,230,216,.6);max-width:520px;}
+    .filter-bar{display:flex;gap:.75rem;flex-wrap:wrap;padding:0 4rem;max-width:1200px;margin:0 auto 4rem;}
+    .filter-btn{padding:.5rem 1.4rem;border-radius:100px;border:1px solid rgba(200,147,74,.25);background:transparent;color:rgba(245,230,216,.6);font-family:var(--font-body);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;cursor:none;transition:all .2s;}
+    .filter-btn:hover,.filter-btn.active{background:var(--gold);color:var(--dark);border-color:var(--gold);}
+    .flavors-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;padding:0 4rem;max-width:1200px;margin:0 auto 8rem;}
+    .flavor-card{border-radius:20px;overflow:hidden;cursor:none;transition:transform .4s cubic-bezier(.23,1,.32,1);position:relative;aspect-ratio:3/4;border:1px solid rgba(200,147,74,.1);}
+    .flavor-card:hover{transform:translateY(-8px) scale(1.01);}
+    .flavor-bg{position:absolute;inset:0;transition:transform .6s cubic-bezier(.23,1,.32,1);}
+    .flavor-card:hover .flavor-bg{transform:scale(1.06);}
+    .flavor-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(26,5,5,.96) 0%,transparent 55%);opacity:.75;transition:opacity .4s;}
+    .flavor-card:hover .flavor-overlay{opacity:1;}
+    .flavor-accent{position:absolute;top:0;left:0;right:0;height:3px;}
+    .flavor-badge{position:absolute;top:1.2rem;left:1.2rem;padding:.3rem .8rem;border-radius:100px;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;font-weight:500;}
+    .flavor-info{position:absolute;bottom:0;left:0;right:0;padding:1.8rem;}
+    .flavor-tag{font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem;}
+    .flavor-name{font-family:var(--font-display);font-size:1.6rem;font-weight:700;color:var(--cream);line-height:1.1;}
+    .flavor-desc{font-size:.82rem;color:rgba(245,230,216,.55);margin-top:.5rem;line-height:1.5;}
+    .flavor-cals{font-size:.75rem;color:rgba(245,230,216,.35);margin-top:.75rem;}
+    .flavor-arrow{position:absolute;top:1.2rem;right:1.2rem;width:34px;height:34px;border:1px solid rgba(200,147,74,.35);border-radius:50%;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .3s;color:var(--gold);font-size:.9rem;}
+    .flavor-card:hover .flavor-arrow{opacity:1;}
+    footer{background:#0A0101;padding:3.5rem 4rem;border-top:1px solid rgba(200,147,74,.08);}
+    .footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;}
+    .footer-brand{font-family:var(--font-display);font-size:1.8rem;font-weight:900;color:var(--gold);margin-bottom:.8rem;}
+    .footer-tagline{font-size:.82rem;color:rgba(245,230,216,.35);line-height:1.7;max-width:260px;}
+    .footer-col h4{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;}
+    .footer-col ul{list-style:none;}.footer-col ul li{margin-bottom:.6rem;}
+    .footer-col ul li a{font-size:.85rem;color:rgba(245,230,216,.4);text-decoration:none;transition:color .2s;}
+    .footer-col ul li a:hover{color:var(--gold);}
+    .footer-bottom{max-width:1200px;margin:2.5rem auto 0;padding-top:1.5rem;border-top:1px solid rgba(245,230,216,.05);display:flex;justify-content:space-between;}
+    .footer-copy{font-size:.72rem;color:rgba(245,230,216,.2);}
+    .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease;}
+    .reveal.visible{opacity:1;transform:translateY(0);}
+    @media(max-width:900px){nav{padding:1.2rem 2rem;}.page-hero{padding:8rem 2rem 4rem;}.filter-bar,.flavors-grid{padding:0 2rem;}.flavors-grid{grid-template-columns:1fr 1fr;}footer{padding:3rem 2rem;}.footer-inner{grid-template-columns:1fr 1fr;gap:2rem;}}
+    @media(max-width:600px){.nav-links{display:none;}.flavors-grid{grid-template-columns:1fr;}.footer-inner{grid-template-columns:1fr;}}
+  </style>
+</head>
+<body>
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+  <nav>
+    <a href="index.html" class="nav-logo">Dr Pepper</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="flavors.html" class="active">Flavors</a></li>
+      <li><a href="story.html">Story</a></li>
+      <li><a href="mixer.html">Mixer</a></li>
+      <li><a href="shop.html" class="nav-cta">Shop</a></li>
+    </ul>
+  </nav>
+  <div class="page-hero">
+    <div class="page-tag">Product Lineup</div>
+    <h1>The Full <em>Flavor</em> Family</h1>
+    <p class="page-sub">Every variety, every twist, every bold idea — the complete Dr Pepper lineup in one place.</p>
+  </div>
+  <div class="filter-bar">
+    <button class="filter-btn active" onclick="filterFlavors('all',this)">All</button>
+    <button class="filter-btn" onclick="filterFlavors('original',this)">Original</button>
+    <button class="filter-btn" onclick="filterFlavors('diet',this)">Diet & Zero</button>
+    <button class="filter-btn" onclick="filterFlavors('fusion',this)">Fusion</button>
+    <button class="filter-btn" onclick="filterFlavors('limited',this)">Limited</button>
+  </div>
+  <div class="flavors-grid" id="flavorsGrid">
+    <div class="flavor-card reveal" data-cat="original">
+      <div class="flavor-accent" style="background:linear-gradient(to right,#C0392B,#8B1A1A);"></div>
+      <div class="flavor-bg" style="background:radial-gradient(ellipse at 50% 30%,#5C1010,#1A0505);"></div>
+      <div class="flavor-overlay"></div>
+      <div class="flavor-badge" style="background:rgba(200,147,74,.2);color:var(--gold);border:1px solid rgba(200,147,74,.3);">Classic</div>
+      <div class="flavor-arrow">↗</div>
+      <div class="flavor-info"><div class="flavor-tag">Original</div><div class="flavor-name">Dr Pepper</div><div class="flavor-desc">The original 23-flavor legend. Bold, mysterious, utterly unique.</div><div class="flavor-cals">150 cal · 12 fl oz</div></div>
+    </div>
+    <div class="flavor-card reveal" data-cat="diet">
+      <div class="flavor-accent" style="background:linear-gradient(to right,#1A4A8A,#0D2255);"></div>
+      <div class="flavor-bg" style="background:radial-gradient(ellipse at 50% 30%,#0A2240,#050D18);"></div>
+      <div class="flavor-overlay"></div>
+      <div class="flavor-badge" style="background:rgba(26,74,138,.3);color:#6BA3F0;border:1px solid rgba(107,163,240,.3);">Diet</div>
+      <div class="flavor-arrow">↗</div>
+      <div class="flavor-info"><div class="flavor-tag">Diet</div><div class="flavor-name">Diet Dr Pepper</div><div class="flavor-desc">All 23 flavors, zero sugar, zero compromise.</div><div class="flavor-cals">0 cal · 12 fl oz</div></div>
+    </div>
+    <div class="flavor-card reveal" data-cat="diet">
+      <div class="flavor-accent" style="background:linear-gradient(to right,#2A7A3A,#144020);"></div>
+      <div class="flavor-bg" style="background:radial-gradient(ellipse at 50% 30%,#0A3015,#020D05);"></div>
+      <div class="flavor-overlay"></div>
+      <div class="flavor-badge" style="background:rgba(42,122,58,.3);color:#6EC97A;border:1px solid rgba(110,201,122,.3);">Zero Sugar</div>
+      <div class="flavor-arrow">↗</div>
+      <div class="flavor-info"><div class="flavor-tag">Zero Sugar</div><div class="flavor-name">Dr Pepper Zero</div><div class="flavor-desc">Bold taste. Zero sugar. Maximum attitude.</div><div class="flavor-cals">0 cal · 12 fl oz</div></div>
+    </div>
+    <div class="flavor-card reveal" data-cat="fusion">
+      <div class="flavor-accent" style="background:linear-gradient(to right,#7A3A1A,#3D1A08);"></div>
+      <div class="flavor-bg" style="background:radial-gradient(ellipse at 50% 30%,#3A1808,#100503);"></div>
+      <div class="flavor-overlay"></div>
+      <div class="flavor-badge" style="background:rgba(200,147,74,.2);color:var(--gold);border:1px solid rgba(200,147,74,.3);">Fusion</div>
+      <div class="flavor-arrow">↗</div>
+      <div class="flavor-info"><div class="flavor-tag">Flavor Fusion</div><div class="flavor-name">Cream Soda</div><div class="flavor-desc">Smooth, creamy, and unmistakably Dr Pepper.</div><div class="flavor-cals">160 cal · 12 fl oz</div></div>
+    </div>
+    <div class="flavor-card reveal" data-cat="limited">
+      <div class="flavor-accent" style="background:linear-gradient(to right,#6A1A5A,#2D0A25);"></div>
+      <div class="flavor-bg" style="background:radial-gradient(ellipse at 50% 30%,#2D0A25,#0D0210);"></div>
+      <div class="flavor-overlay"></div>
+      <div class="flavor-badge" style="background:rgba(106,26,90,.3);color:#D97FCC;border:1px solid rgba(217,127,204,.3);">Limited</div>
+      <div class="flavor-arrow">↗</div>
+      <div class="flavor-info"><div class="flavor-tag">Limited Edition</div><div class="flavor-name">Dark Berry</div><div class="flavor-desc">A mysterious, dark twist on the classic.</div><div class="flavor-cals">150 cal · 12 fl oz</div></div>
+    </div>
+    <div class="flavor-card reveal" data-cat="fusion">
+      <div class="flavor-accent" style="background:linear-gradient(to right,#C8934A,#7A4A18);"></div>
+      <div class="flavor-bg" style="background:radial-gradient(ellipse at 50% 30%,#5A3010,#180D02);"></div>
+      <div class="flavor-overlay"></div>
+      <div class="flavor-badge" style="background:rgba(200,147,74,.2);color:var(--gold);border:1px solid rgba(200,147,74,.3);">Fusion</div>
+      <div class="flavor-arrow">↗</div>
+      <div class="flavor-info"><div class="flavor-tag">Strawberries & Cream</div><div class="flavor-name">Strawberry Cream</div><div class="flavor-desc">Sweet strawberry meets smooth cream. A fan favorite.</div><div class="flavor-cals">155 cal · 12 fl oz</div></div>
+    </div>
+    <div class="flavor-card reveal" data-cat="diet">
+      <div class="flavor-accent" style="background:linear-gradient(to right,#7A3A1A,#3D1A08);"></div>
+      <div class="flavor-bg" style="background:radial-gradient(ellipse at 50% 30%,#3A1808,#100503);"></div>
+      <div class="flavor-overlay"></div>
+      <div class="flavor-badge" style="background:rgba(200,147,74,.2);color:var(--gold);border:1px solid rgba(200,147,74,.3);">Zero Sugar</div>
+      <div class="flavor-arrow">↗</div>
+      <div class="flavor-info"><div class="flavor-tag">Cream Soda · Zero</div><div class="flavor-name">Cream Soda Zero</div><div class="flavor-desc">All the creamy goodness, none of the sugar.</div><div class="flavor-cals">0 cal · 12 fl oz</div></div>
+    </div>
+    <div class="flavor-card reveal" data-cat="limited">
+      <div class="flavor-accent" style="background:linear-gradient(to right,#8B1A1A,#4A0808);"></div>
+      <div class="flavor-bg" style="background:radial-gradient(ellipse at 50% 30%,#5C1010,#1A0505);"></div>
+      <div class="flavor-overlay"></div>
+      <div class="flavor-badge" style="background:rgba(139,26,26,.3);color:#F07070;border:1px solid rgba(240,112,112,.3);">Limited</div>
+      <div class="flavor-arrow">↗</div>
+      <div class="flavor-info"><div class="flavor-tag">Fansville</div><div class="flavor-name">Dr Pepper Bold</div><div class="flavor-desc">Extra caffeine for those who dare to go bolder.</div><div class="flavor-cals">150 cal · 12 fl oz</div></div>
+    </div>
+    <div class="flavor-card reveal" data-cat="fusion">
+      <div class="flavor-accent" style="background:linear-gradient(to right,#C0392B,#8B1A1A);"></div>
+      <div class="flavor-bg" style="background:radial-gradient(ellipse at 50% 30%,#5C1010,#1A0505);"></div>
+      <div class="flavor-overlay"></div>
+      <div class="flavor-badge" style="background:rgba(200,147,74,.2);color:var(--gold);border:1px solid rgba(200,147,74,.3);">Fusion</div>
+      <div class="flavor-arrow">↗</div>
+      <div class="flavor-info"><div class="flavor-tag">Cherry</div><div class="flavor-name">Cherry Vanilla</div><div class="flavor-desc">Cherry sweetness meets silky vanilla in every sip.</div><div class="flavor-cals">150 cal · 12 fl oz</div></div>
+    </div>
+  </div>
+  <footer>
+    <div class="footer-inner">
+      <div><div class="footer-brand">Dr Pepper</div><p class="footer-tagline">America's original bold soft drink. 23 flavors. 140 years of being gloriously, uniquely itself.</p></div>
+      <div class="footer-col"><h4>Products</h4><ul><li><a href="flavors.html">Original</a></li><li><a href="flavors.html">Diet</a></li><li><a href="flavors.html">Zero Sugar</a></li><li><a href="flavors.html">Cream Soda</a></li></ul></div>
+      <div class="footer-col"><h4>Company</h4><ul><li><a href="story.html">Our Story</a></li><li><a href="mixer.html">Mixer</a></li><li><a href="shop.html">Shop</a></li></ul></div>
+      <div class="footer-col"><h4>Connect</h4><ul><li><a href="#">Instagram</a></li><li><a href="#">Twitter</a></li><li><a href="#">TikTok</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><div class="footer-copy">© 2025 Dr Pepper Fan Site.</div><div class="footer-copy">Fan-made concept</div></div>
+  </footer>
+  <script>
+    const cur=document.getElementById('cursor'),ring=document.getElementById('cursorRing');let mx=0,my=0,rx=0,ry=0;
+    document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.transform=`translate(${mx-6}px,${my-6}px)`;});
+    (function animR(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.transform=`translate(${rx-18}px,${ry-18}px)`;requestAnimationFrame(animR);})();
+    document.querySelectorAll('a,button,.flavor-card').forEach(el=>{el.addEventListener('mouseenter',()=>ring.classList.add('hovered'));el.addEventListener('mouseleave',()=>ring.classList.remove('hovered'));});
+    function filterFlavors(cat,btn){document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.flavor-card').forEach(card=>{card.style.display=(cat==='all'||card.dataset.cat===cat)?'':'none';});}
+    const ro=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.1});
+    document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
+  </script>
+</body>
+</html>

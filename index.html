@@ -3,1330 +3,183 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dr Pepper — Drink It Up</title>
-
-  <!-- Favicon: Dr Pepper red circle with "DP" -->
+  <title>Dr Pepper — The Original Bold Since 1885</title>
+  <meta name="description" content="Dr Pepper is America's original bold soft drink. Discover 23 unique flavors, our rich history, and find your perfect blend." />
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%238B1A1A'/><text x='50' y='58' text-anchor='middle' font-family='Georgia,serif' font-size='36' font-weight='bold' fill='%23C8934A'>DP</text></svg>" />
-
-  <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-J2REWFM5JJ"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-J2REWFM5JJ');
-  </script>
-
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-J2REWFM5JJ');</script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --pepper-red: #8B1A1A;
-      --pepper-dark: #3D0A0A;
-      --pepper-crimson: #C0392B;
-      --pepper-light: #F5E6D8;
-      --pepper-gold: #C8934A;
-      --pepper-cream: #FAF3EC;
-      --pepper-gray: #1A0A0A;
-      --font-display: 'Playfair Display', serif;
-      --font-body: 'DM Sans', sans-serif;
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--pepper-dark);
-      color: var(--pepper-light);
-      font-family: var(--font-body);
-      overflow-x: hidden;
-      cursor: none;
-    }
-
-    /* Custom cursor */
-    .cursor {
-      width: 12px; height: 12px;
-      background: var(--pepper-gold);
-      border-radius: 50%;
-      position: fixed;
-      top: 0; left: 0;
-      pointer-events: none;
-      z-index: 9999;
-      mix-blend-mode: difference;
-      transition: transform 0.15s ease;
-    }
-    .cursor-ring {
-      width: 36px; height: 36px;
-      border: 1.5px solid var(--pepper-gold);
-      border-radius: 50%;
-      position: fixed;
-      top: 0; left: 0;
-      pointer-events: none;
-      z-index: 9998;
-      transition: transform 0.35s ease, width 0.2s, height 0.2s;
-      opacity: 0.6;
-    }
-    .cursor-ring.hovered { width: 56px; height: 56px; opacity: 1; }
-
-    /* NAV */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0;
-      z-index: 100;
-      padding: 1.5rem 4rem;
-      display: flex; align-items: center; justify-content: space-between;
-      background: linear-gradient(to bottom, rgba(61,10,10,0.95), transparent);
-    }
-    .nav-logo {
-      font-family: var(--font-display);
-      font-size: 1.5rem;
-      font-weight: 900;
-      color: var(--pepper-gold);
-      letter-spacing: -0.02em;
-      text-decoration: none;
-    }
-    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-    .nav-links a {
-      color: var(--pepper-light);
-      text-decoration: none;
-      font-size: 0.85rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      opacity: 0.75;
-      transition: opacity 0.2s, color 0.2s;
-    }
-    .nav-links a:hover { opacity: 1; color: var(--pepper-gold); }
-
-    /* HERO */
-    .hero {
-      min-height: 100vh;
-      display: flex; align-items: center; justify-content: center;
-      position: relative;
-      overflow: hidden;
-      background: radial-gradient(ellipse at 60% 50%, #5C1010 0%, var(--pepper-dark) 65%);
-    }
-
-    /* Animated background bubbles */
-    .bubbles {
-      position: absolute; inset: 0;
-      pointer-events: none;
-      overflow: hidden;
-    }
-    .bubble {
-      position: absolute;
-      border-radius: 50%;
-      background: rgba(200, 147, 74, 0.06);
-      border: 1px solid rgba(200, 147, 74, 0.12);
-      animation: rise linear infinite;
-    }
-    @keyframes rise {
-      0% { transform: translateY(110vh) scale(0.8); opacity: 0; }
-      10% { opacity: 1; }
-      90% { opacity: 0.5; }
-      100% { transform: translateY(-10vh) scale(1.1); opacity: 0; }
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: center;
-      max-width: 1200px;
-      padding: 0 4rem;
-      width: 100%;
-    }
-
-    .hero-text { animation: fadeInLeft 1s ease both; }
-    @keyframes fadeInLeft {
-      from { opacity: 0; transform: translateX(-40px); }
-      to { opacity: 1; transform: translateX(0); }
-    }
-
-    .hero-eyebrow {
-      font-size: 0.75rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--pepper-gold);
-      margin-bottom: 1.2rem;
-      display: flex; align-items: center; gap: 0.75rem;
-    }
-    .hero-eyebrow::before {
-      content: '';
-      display: inline-block;
-      width: 32px; height: 1px;
-      background: var(--pepper-gold);
-    }
-
-    h1 {
-      font-family: var(--font-display);
-      font-size: clamp(3.5rem, 6vw, 6rem);
-      font-weight: 900;
-      line-height: 0.95;
-      margin-bottom: 1.5rem;
-      color: var(--pepper-cream);
-    }
-    h1 em {
-      font-style: italic;
-      color: var(--pepper-gold);
-      display: block;
-    }
-
-    .hero-sub {
-      font-size: 1.05rem;
-      line-height: 1.7;
-      color: rgba(245, 230, 216, 0.65);
-      max-width: 420px;
-      margin-bottom: 2.5rem;
-    }
-
-    .hero-cta {
-      display: flex; gap: 1rem; flex-wrap: wrap;
-    }
-    .btn {
-      padding: 0.9rem 2.2rem;
-      font-family: var(--font-body);
-      font-size: 0.85rem;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      border: none;
-      border-radius: 100px;
-      cursor: none;
-      transition: all 0.25s ease;
-      text-decoration: none;
-      display: inline-flex; align-items: center; gap: 0.5rem;
-    }
-    .btn-primary {
-      background: var(--pepper-gold);
-      color: var(--pepper-dark);
-    }
-    .btn-primary:hover {
-      background: #E0A855;
-      transform: translateY(-2px);
-      box-shadow: 0 12px 40px rgba(200, 147, 74, 0.35);
-    }
-    .btn-outline {
-      background: transparent;
-      color: var(--pepper-light);
-      border: 1px solid rgba(245, 230, 216, 0.3);
-    }
-    .btn-outline:hover {
-      border-color: var(--pepper-gold);
-      color: var(--pepper-gold);
-      transform: translateY(-2px);
-    }
-
-    /* Animated can */
-    .hero-visual {
-      position: relative;
-      display: flex; justify-content: center; align-items: center;
-      animation: fadeInRight 1s ease 0.3s both;
-    }
-    @keyframes fadeInRight {
-      from { opacity: 0; transform: translateX(40px); }
-      to { opacity: 1; transform: translateX(0); }
-    }
-
-    #canCanvas {
-      width: 340px;
-      height: 480px;
-      position: relative;
-      z-index: 1;
-      display: block;
-    }
-
-    .can-glow {
-      position: absolute;
-      inset: -40px;
-      background: radial-gradient(ellipse, rgba(139,26,26,0.5) 0%, transparent 70%);
-      border-radius: 50%;
-      animation: pulse-glow 4s ease-in-out infinite;
-      z-index: 0;
-    }
-    @keyframes pulse-glow {
-      0%, 100% { opacity: 0.6; transform: scale(1); }
-      50% { opacity: 1; transform: scale(1.1); }
-    }
-
-    .can-svg {
-      width: 100%;
-      height: auto;
-      position: relative;
-      z-index: 1;
-      filter: drop-shadow(0 30px 60px rgba(0,0,0,0.6));
-    }
-
-    /* Splash / liquid effect */
-    .splash {
-      position: absolute;
-      bottom: -30px; left: 50%;
-      transform: translateX(-50%);
-      z-index: 0;
-    }
-
-    /* STATS STRIP */
-    .stats-strip {
-      background: var(--pepper-red);
-      padding: 2rem 4rem;
-      display: flex;
-      justify-content: center;
-      gap: 6rem;
-      border-top: 1px solid rgba(200, 147, 74, 0.2);
-      border-bottom: 1px solid rgba(200, 147, 74, 0.2);
-    }
-    .stat { text-align: center; }
-    .stat-num {
-      font-family: var(--font-display);
-      font-size: 2.8rem;
-      font-weight: 900;
-      color: var(--pepper-gold);
-      display: block;
-      line-height: 1;
-    }
-    .stat-label {
-      font-size: 0.7rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: rgba(245, 230, 216, 0.6);
-      margin-top: 0.4rem;
-    }
-
-    /* FLAVORS SECTION */
-    .section {
-      padding: 8rem 4rem;
-      max-width: 1300px;
-      margin: 0 auto;
-    }
-    .section-header {
-      display: flex; align-items: flex-end; justify-content: space-between;
-      margin-bottom: 4rem;
-    }
-    .section-tag {
-      font-size: 0.7rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--pepper-gold);
-      margin-bottom: 0.8rem;
-    }
-    h2 {
-      font-family: var(--font-display);
-      font-size: clamp(2.5rem, 4vw, 4rem);
-      font-weight: 900;
-      line-height: 1.05;
-      color: var(--pepper-cream);
-    }
-    h2 em { font-style: italic; color: var(--pepper-gold); }
-
-    .flavors-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-    }
-
-    .flavor-card {
-      position: relative;
-      border-radius: 20px;
-      overflow: hidden;
-      cursor: none;
-      transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-      aspect-ratio: 3/4;
-      background: linear-gradient(135deg, #4A0E0E, #1A0505);
-      border: 1px solid rgba(200, 147, 74, 0.15);
-    }
-    .flavor-card:hover {
-      transform: translateY(-8px) scale(1.01);
-    }
-    .flavor-card:hover .flavor-overlay { opacity: 1; }
-    .flavor-card:hover .flavor-name { letter-spacing: 0.05em; }
-
-    .flavor-bg {
-      position: absolute; inset: 0;
-      transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-    }
-    .flavor-card:hover .flavor-bg { transform: scale(1.06); }
-
-    .flavor-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(61,10,10,0.95) 0%, transparent 55%);
-      opacity: 0.7;
-      transition: opacity 0.4s;
-    }
-
-    .flavor-info {
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      padding: 1.8rem;
-    }
-    .flavor-tag {
-      font-size: 0.65rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--pepper-gold);
-      margin-bottom: 0.5rem;
-    }
-    .flavor-name {
-      font-family: var(--font-display);
-      font-size: 1.6rem;
-      font-weight: 700;
-      color: var(--pepper-cream);
-      transition: letter-spacing 0.3s;
-      line-height: 1.1;
-    }
-    .flavor-desc {
-      font-size: 0.82rem;
-      color: rgba(245, 230, 216, 0.6);
-      margin-top: 0.5rem;
-      line-height: 1.5;
-    }
-    .flavor-arrow {
-      position: absolute;
-      top: 1.5rem; right: 1.5rem;
-      width: 36px; height: 36px;
-      border: 1px solid rgba(200, 147, 74, 0.4);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      opacity: 0;
-      transition: opacity 0.3s, background 0.3s;
-      color: var(--pepper-gold);
-      font-size: 1rem;
-    }
-    .flavor-card:hover .flavor-arrow {
-      opacity: 1;
-      background: rgba(200, 147, 74, 0.15);
-    }
-
-    /* Flavor card color accent bands */
-    .flavor-accent {
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-    }
-
-    /* ABOUT / STORY SECTION */
-    .story-section {
-      padding: 8rem 4rem;
-      background: linear-gradient(to bottom, var(--pepper-dark), #200808);
-      position: relative;
-      overflow: hidden;
-    }
-    .story-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8rem;
-      align-items: center;
-    }
-    .story-text h2 { margin-bottom: 1.5rem; }
-    .story-body {
-      font-size: 1rem;
-      line-height: 1.8;
-      color: rgba(245, 230, 216, 0.65);
-      margin-bottom: 2rem;
-    }
-
-    .timeline {
-      margin-top: 3rem;
-    }
-    .timeline-item {
-      display: flex;
-      gap: 1.5rem;
-      margin-bottom: 2rem;
-      align-items: flex-start;
-    }
-    .timeline-year {
-      font-family: var(--font-display);
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--pepper-gold);
-      min-width: 60px;
-    }
-    .timeline-text {
-      font-size: 0.88rem;
-      color: rgba(245, 230, 216, 0.6);
-      line-height: 1.6;
-      padding-top: 0.1rem;
-    }
-    .timeline-divider {
-      width: 1px;
-      background: linear-gradient(to bottom, var(--pepper-gold), transparent);
-      align-self: stretch;
-    }
-
-    /* Big decorative text */
-    .deco-text {
-      font-family: var(--font-display);
-      font-size: 18vw;
-      font-weight: 900;
-      color: rgba(139, 26, 26, 0.12);
-      position: absolute;
-      right: -2vw;
-      bottom: -2rem;
-      line-height: 1;
-      pointer-events: none;
-      user-select: none;
-      letter-spacing: -0.04em;
-    }
-
-    /* FLAVORS SCROLL TICKER */
-    .ticker-strip {
-      background: var(--pepper-gold);
-      padding: 0.75rem 0;
-      overflow: hidden;
-      white-space: nowrap;
-    }
-    .ticker-inner {
-      display: inline-flex;
-      animation: ticker 20s linear infinite;
-    }
-    @keyframes ticker {
-      from { transform: translateX(0); }
-      to { transform: translateX(-50%); }
-    }
-    .ticker-item {
-      font-family: var(--font-display);
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--pepper-dark);
-      padding: 0 2rem;
-      letter-spacing: 0.05em;
-    }
-    .ticker-dot {
-      color: var(--pepper-red);
-      font-size: 0.6rem;
-      vertical-align: middle;
-    }
-
-    /* INTERACTIVE MIXER */
-    .mixer-section {
-      padding: 8rem 4rem;
-      background: #0E0303;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .mixer-section::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse at 50% 100%, rgba(139,26,26,0.3) 0%, transparent 65%);
-      pointer-events: none;
-    }
-    .mixer-inner { max-width: 900px; margin: 0 auto; position: relative; z-index: 1; }
-    .mixer-inner h2 { margin-bottom: 0.75rem; }
-    .mixer-sub {
-      font-size: 0.95rem;
-      color: rgba(245, 230, 216, 0.5);
-      margin-bottom: 3.5rem;
-    }
-
-    .mixer-sliders {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-      margin-bottom: 3rem;
-      text-align: left;
-    }
-    .slider-group label {
-      display: flex; justify-content: space-between;
-      font-size: 0.78rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: rgba(245, 230, 216, 0.6);
-      margin-bottom: 0.75rem;
-    }
-    .slider-group label span {
-      color: var(--pepper-gold);
-      font-weight: 500;
-    }
-    input[type="range"] {
-      -webkit-appearance: none;
-      width: 100%;
-      height: 2px;
-      background: rgba(245, 230, 216, 0.12);
-      border-radius: 100px;
-      outline: none;
-      cursor: none;
-    }
-    input[type="range"]::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      width: 18px; height: 18px;
-      background: var(--pepper-gold);
-      border-radius: 50%;
-      cursor: none;
-      box-shadow: 0 0 12px rgba(200, 147, 74, 0.4);
-      transition: transform 0.15s;
-    }
-    input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.2); }
-    input[type="range"]::-moz-range-thumb {
-      width: 18px; height: 18px;
-      background: var(--pepper-gold);
-      border-radius: 50%;
-      border: none;
-      cursor: none;
-    }
-
-    .mixer-result {
-      background: rgba(139, 26, 26, 0.15);
-      border: 1px solid rgba(200, 147, 74, 0.2);
-      border-radius: 16px;
-      padding: 2rem;
-      margin-bottom: 2rem;
-    }
-    .result-label {
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--pepper-gold);
-      margin-bottom: 0.5rem;
-    }
-    .result-name {
-      font-family: var(--font-display);
-      font-size: 2.2rem;
-      font-weight: 700;
-      color: var(--pepper-cream);
-    }
-    .result-desc {
-      font-size: 0.9rem;
-      color: rgba(245, 230, 216, 0.55);
-      margin-top: 0.5rem;
-    }
-
-    /* FOOTER */
-    footer {
-      background: #070101;
-      padding: 4rem;
-      border-top: 1px solid rgba(200, 147, 74, 0.1);
-    }
-    .footer-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 4rem;
-    }
-    .footer-brand {
-      font-family: var(--font-display);
-      font-size: 2rem;
-      font-weight: 900;
-      color: var(--pepper-gold);
-      margin-bottom: 1rem;
-    }
-    .footer-tagline {
-      font-size: 0.85rem;
-      color: rgba(245, 230, 216, 0.4);
-      line-height: 1.7;
-      max-width: 280px;
-    }
-    .footer-col h4 {
-      font-size: 0.7rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--pepper-gold);
-      margin-bottom: 1.2rem;
-    }
-    .footer-col ul { list-style: none; }
-    .footer-col ul li {
-      margin-bottom: 0.65rem;
-    }
-    .footer-col ul li a {
-      font-size: 0.88rem;
-      color: rgba(245, 230, 216, 0.45);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    .footer-col ul li a:hover { color: var(--pepper-gold); }
-    .footer-bottom {
-      max-width: 1200px;
-      margin: 3rem auto 0;
-      padding-top: 2rem;
-      border-top: 1px solid rgba(245, 230, 216, 0.06);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .footer-copy {
-      font-size: 0.75rem;
-      color: rgba(245, 230, 216, 0.25);
-    }
-
-    /* Scroll reveal */
-    .reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .reveal-delay-1 { transition-delay: 0.1s; }
-    .reveal-delay-2 { transition-delay: 0.2s; }
-    .reveal-delay-3 { transition-delay: 0.3s; }
-
-    /* RESPONSIVE */
-    @media (max-width: 900px) {
-      nav { padding: 1.2rem 2rem; }
-      .hero-content { grid-template-columns: 1fr; text-align: center; padding: 0 2rem; }
-      .hero-visual { order: -1; }
-      .hero-sub { margin: 0 auto 2rem; }
-      .hero-cta { justify-content: center; }
-      .stats-strip { gap: 2.5rem; flex-wrap: wrap; padding: 2rem; }
-      .section, .mixer-section { padding: 5rem 2rem; }
-      .flavors-grid { grid-template-columns: 1fr 1fr; }
-      .story-section { padding: 5rem 2rem; }
-      .story-inner { grid-template-columns: 1fr; gap: 4rem; }
-      .mixer-sliders { grid-template-columns: 1fr; }
-      footer { padding: 3rem 2rem; }
-      .footer-inner { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
-    }
-    @media (max-width: 600px) {
-      .flavors-grid { grid-template-columns: 1fr; }
-      .footer-inner { grid-template-columns: 1fr; }
-      .nav-links { display: none; }
-    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    :root{--red:#8B1A1A;--dark:#1A0505;--light:#F5E6D8;--gold:#C8934A;--cream:#FAF3EC;--font-display:'Playfair Display',serif;--font-body:'DM Sans',sans-serif;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--dark);color:var(--light);font-family:var(--font-body);overflow-x:hidden;cursor:none;}
+    .cursor{width:12px;height:12px;background:var(--gold);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;mix-blend-mode:difference;}
+    .cursor-ring{width:36px;height:36px;border:1.5px solid var(--gold);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transition:transform .35s ease,width .2s,height .2s;opacity:.6;}
+    .cursor-ring.hovered{width:56px;height:56px;opacity:1;}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.4rem 4rem;display:flex;align-items:center;justify-content:space-between;background:rgba(26,5,5,.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(200,147,74,.1);}
+    .nav-logo{font-family:var(--font-display);font-size:1.4rem;font-weight:900;color:var(--gold);text-decoration:none;}
+    .nav-links{display:flex;gap:2rem;list-style:none;align-items:center;}
+    .nav-links a{color:var(--light);text-decoration:none;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;opacity:.65;transition:opacity .2s,color .2s;}
+    .nav-links a:hover,.nav-links a.active{opacity:1;color:var(--gold);}
+    .nav-cta{background:var(--gold)!important;color:var(--dark)!important;padding:.5rem 1.3rem;border-radius:100px;opacity:1!important;font-weight:500;}
+    .hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;background:radial-gradient(ellipse at 65% 50%,#4A0D0D 0%,var(--dark) 65%);}
+    .bubbles{position:absolute;inset:0;pointer-events:none;overflow:hidden;}
+    .bubble{position:absolute;border-radius:50%;background:rgba(200,147,74,.05);border:1px solid rgba(200,147,74,.1);animation:rise linear infinite;}
+    @keyframes rise{0%{transform:translateY(110vh);opacity:0;}10%{opacity:1;}90%{opacity:.4;}100%{transform:translateY(-10vh);opacity:0;}}
+    .hero-content{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;max-width:1200px;padding:0 4rem;width:100%;margin:0 auto;}
+    .hero-text{animation:fadeL 1s ease both;}
+    @keyframes fadeL{from{opacity:0;transform:translateX(-30px);}to{opacity:1;transform:translateX(0);}}
+    .eyebrow{font-size:.72rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem;display:flex;align-items:center;gap:.75rem;}
+    .eyebrow::before{content:'';display:inline-block;width:28px;height:1px;background:var(--gold);}
+    h1{font-family:var(--font-display);font-size:clamp(3.5rem,6vw,6rem);font-weight:900;line-height:.95;color:var(--cream);margin-bottom:1.4rem;}
+    h1 em{font-style:italic;color:var(--gold);display:block;}
+    .hero-sub{font-size:1rem;line-height:1.75;color:rgba(245,230,216,.6);max-width:420px;margin-bottom:2.5rem;}
+    .hero-cta{display:flex;gap:1rem;flex-wrap:wrap;}
+    .btn{padding:.85rem 2rem;font-family:var(--font-body);font-size:.82rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;border:none;border-radius:100px;cursor:none;transition:all .25s ease;text-decoration:none;display:inline-flex;align-items:center;gap:.5rem;}
+    .btn-primary{background:var(--gold);color:var(--dark);}
+    .btn-primary:hover{background:#E0A855;transform:translateY(-2px);box-shadow:0 12px 40px rgba(200,147,74,.3);}
+    .btn-outline{background:transparent;color:var(--light);border:1px solid rgba(245,230,216,.25);}
+    .btn-outline:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px);}
+    .hero-visual{display:flex;justify-content:center;align-items:center;animation:fadeR 1s ease .3s both;position:relative;}
+    @keyframes fadeR{from{opacity:0;transform:translateX(30px);}to{opacity:1;transform:translateX(0);}}
+    .can-glow{position:absolute;inset:-40px;background:radial-gradient(ellipse,rgba(139,26,26,.45) 0%,transparent 70%);border-radius:50%;animation:pulse 4s ease-in-out infinite;}
+    @keyframes pulse{0%,100%{opacity:.6;transform:scale(1);}50%{opacity:1;transform:scale(1.08);}}
+    #canCanvas{width:320px;height:460px;display:block;position:relative;z-index:1;}
+    .splash{position:absolute;bottom:-20px;left:50%;transform:translateX(-50%);}
+    .stats{background:#2A0808;padding:2rem 4rem;display:flex;justify-content:center;gap:6rem;border-top:1px solid rgba(200,147,74,.15);border-bottom:1px solid rgba(200,147,74,.15);}
+    .stat{text-align:center;}
+    .stat-num{font-family:var(--font-display);font-size:2.6rem;font-weight:900;color:var(--gold);display:block;line-height:1;}
+    .stat-label{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,230,216,.5);margin-top:.3rem;}
+    .ticker{background:var(--gold);padding:.7rem 0;overflow:hidden;white-space:nowrap;}
+    .ticker-inner{display:inline-flex;animation:tick 22s linear infinite;}
+    @keyframes tick{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+    .ticker-item{font-family:var(--font-display);font-size:.95rem;font-weight:700;color:var(--dark);padding:0 2rem;}
+    .features{padding:7rem 4rem;max-width:1200px;margin:0 auto;}
+    .features-header{text-align:center;margin-bottom:4rem;}
+    .section-tag{font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:.8rem;}
+    h2{font-family:var(--font-display);font-size:clamp(2rem,3.5vw,3.2rem);font-weight:900;color:var(--cream);}
+    h2 em{font-style:italic;color:var(--gold);}
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem;}
+    .card{background:rgba(139,26,26,.08);border:1px solid rgba(200,147,74,.12);border-radius:20px;padding:2.5rem 2rem;transition:transform .35s ease,border-color .3s;cursor:none;text-decoration:none;display:block;}
+    .card:hover{transform:translateY(-6px);border-color:rgba(200,147,74,.35);}
+    .card-icon{font-size:2.2rem;margin-bottom:1.2rem;}
+    .card-title{font-family:var(--font-display);font-size:1.5rem;font-weight:700;color:var(--cream);margin-bottom:.6rem;}
+    .card-desc{font-size:.88rem;color:rgba(245,230,216,.55);line-height:1.65;}
+    .card-link{display:inline-flex;align-items:center;gap:.4rem;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-top:1.2rem;}
+    .highlight{background:linear-gradient(135deg,#3D0A0A,#1A0505);padding:6rem 4rem;text-align:center;position:relative;overflow:hidden;}
+    .highlight::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 100%,rgba(139,26,26,.3) 0%,transparent 65%);}
+    .highlight-inner{position:relative;z-index:1;max-width:700px;margin:0 auto;}
+    .big-num{font-family:var(--font-display);font-size:clamp(6rem,15vw,12rem);font-weight:900;color:rgba(200,147,74,.12);line-height:1;margin-bottom:-2rem;}
+    .highlight p{font-size:1rem;color:rgba(245,230,216,.55);margin:1rem 0 2rem;line-height:1.75;}
+    footer{background:#0A0101;padding:3.5rem 4rem;border-top:1px solid rgba(200,147,74,.08);}
+    .footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;}
+    .footer-brand{font-family:var(--font-display);font-size:1.8rem;font-weight:900;color:var(--gold);margin-bottom:.8rem;}
+    .footer-tagline{font-size:.82rem;color:rgba(245,230,216,.35);line-height:1.7;max-width:260px;}
+    .footer-col h4{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;}
+    .footer-col ul{list-style:none;}
+    .footer-col ul li{margin-bottom:.6rem;}
+    .footer-col ul li a{font-size:.85rem;color:rgba(245,230,216,.4);text-decoration:none;transition:color .2s;}
+    .footer-col ul li a:hover{color:var(--gold);}
+    .footer-bottom{max-width:1200px;margin:2.5rem auto 0;padding-top:1.5rem;border-top:1px solid rgba(245,230,216,.05);display:flex;justify-content:space-between;}
+    .footer-copy{font-size:.72rem;color:rgba(245,230,216,.2);}
+    .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease;}
+    .reveal.visible{opacity:1;transform:translateY(0);}
+    .reveal-delay-1{transition-delay:.12s;}
+    .reveal-delay-2{transition-delay:.24s;}
+    @media(max-width:900px){nav{padding:1.2rem 2rem;}.hero-content{grid-template-columns:1fr;text-align:center;padding:0 2rem;}.hero-visual{order:-1;}.hero-sub{margin:0 auto 2rem;}.hero-cta{justify-content:center;}.stats{gap:2.5rem;flex-wrap:wrap;padding:2rem;}.features{padding:5rem 2rem;}.cards{grid-template-columns:1fr;}.highlight{padding:5rem 2rem;}footer{padding:3rem 2rem;}.footer-inner{grid-template-columns:1fr 1fr;gap:2rem;}}
+    @media(max-width:600px){.nav-links{display:none;}.footer-inner{grid-template-columns:1fr;}}
   </style>
 </head>
 <body>
-
-  <!-- Custom cursor -->
   <div class="cursor" id="cursor"></div>
   <div class="cursor-ring" id="cursorRing"></div>
-
-  <!-- NAV -->
   <nav>
-    <a href="#" class="nav-logo">Dr Pepper</a>
+    <a href="index.html" class="nav-logo">Dr Pepper</a>
     <ul class="nav-links">
-      <li><a href="#flavors">Flavors</a></li>
-      <li><a href="#story">Our Story</a></li>
-      <li><a href="#mixer">Mixer</a></li>
-      <li><a href="#" class="btn btn-primary" style="padding: 0.55rem 1.4rem; font-size: 0.75rem;">Shop Now</a></li>
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="flavors.html">Flavors</a></li>
+      <li><a href="story.html">Story</a></li>
+      <li><a href="mixer.html">Mixer</a></li>
+      <li><a href="shop.html" class="nav-cta">Shop</a></li>
     </ul>
   </nav>
-
-  <!-- HERO -->
   <section class="hero">
     <div class="bubbles" id="bubbles"></div>
-
     <div class="hero-content">
       <div class="hero-text">
-        <div class="hero-eyebrow">Est. 1885 · Waco, Texas</div>
-        <h1>
-          23 Flavors.<br/>
-          <em>One Legend.</em>
-        </h1>
-        <p class="hero-sub">
-          The original, the bold, the one-of-a-kind. Dr Pepper has been delighting taste buds since 1885 with its unmistakable blend of 23 unique flavors.
-        </p>
+        <div class="eyebrow">Est. 1885 · Waco, Texas</div>
+        <h1>23 Flavors.<br/><em>One Legend.</em></h1>
+        <p class="hero-sub">The original, the bold, the one-of-a-kind. Dr Pepper has been delighting taste buds since 1885 with its unmistakable blend of 23 unique flavors.</p>
         <div class="hero-cta">
-          <a href="#flavors" class="btn btn-primary">Explore Flavors ↓</a>
-          <a href="#story" class="btn btn-outline">Our Story</a>
+          <a href="flavors.html" class="btn btn-primary">Explore Flavors ↓</a>
+          <a href="story.html" class="btn btn-outline">Our Story</a>
         </div>
       </div>
-
       <div class="hero-visual">
         <div class="can-glow"></div>
         <canvas id="canCanvas"></canvas>
-        <!-- Splash shadow -->
-        <svg class="splash" width="300" height="60" viewBox="0 0 300 60">
-          <ellipse cx="150" cy="30" rx="120" ry="18" fill="rgba(139,26,26,0.25)"/>
-        </svg>
+        <svg class="splash" width="280" height="50" viewBox="0 0 280 50"><ellipse cx="140" cy="25" rx="110" ry="16" fill="rgba(139,26,26,.2)"/></svg>
       </div>
     </div>
   </section>
-
-  <!-- STATS STRIP -->
-  <div class="stats-strip">
-    <div class="stat">
-      <span class="stat-num" data-count="1885">1885</span>
-      <div class="stat-label">Year Founded</div>
+  <div class="stats">
+    <div class="stat"><span class="stat-num" data-count="1885">1885</span><div class="stat-label">Year Founded</div></div>
+    <div class="stat"><span class="stat-num" data-count="23">0</span><div class="stat-label">Unique Flavors</div></div>
+    <div class="stat"><span class="stat-num" data-count="12">0</span><div class="stat-label">Varieties</div></div>
+    <div class="stat"><span class="stat-num" data-count="140">0</span><div class="stat-label">Years of Bold</div></div>
+  </div>
+  <div class="ticker"><div class="ticker-inner" id="ticker"></div></div>
+  <section class="features">
+    <div class="features-header reveal">
+      <div class="section-tag">Explore</div>
+      <h2>Everything <em>Dr Pepper</em></h2>
     </div>
-    <div class="stat">
-      <span class="stat-num" data-count="23">0</span>
-      <div class="stat-label">Unique Flavors</div>
+    <div class="cards">
+      <a href="flavors.html" class="card reveal"><div class="card-icon">🥤</div><div class="card-title">The Lineup</div><div class="card-desc">From the original to Zero Sugar to Cream Soda — explore every variety in the Dr Pepper family.</div><div class="card-link">View All Flavors →</div></a>
+      <a href="story.html" class="card reveal reveal-delay-1"><div class="card-icon">📜</div><div class="card-title">Our Story</div><div class="card-desc">Born in a Waco drug store in 1885. Over 140 years of being gloriously, uniquely itself.</div><div class="card-link">Read the History →</div></a>
+      <a href="mixer.html" class="card reveal reveal-delay-2"><div class="card-icon">🎚️</div><div class="card-title">Flavor Mixer</div><div class="card-desc">Dial in your perfect Dr Pepper experience. Adjust the sliders to discover your ideal blend.</div><div class="card-link">Try the Mixer →</div></a>
     </div>
-    <div class="stat">
-      <span class="stat-num" data-count="12">0</span>
-      <div class="stat-label">Varieties</div>
-    </div>
-    <div class="stat">
-      <span class="stat-num" data-count="140">0</span>
-      <div class="stat-label">Years of Bold</div>
+  </section>
+  <div class="highlight">
+    <div class="highlight-inner reveal">
+      <div class="big-num">23</div>
+      <h2>One Sip. <em>23 Flavors.</em></h2>
+      <p>No one knows exactly what those 23 flavors are — and that's the whole point. Dr Pepper has kept its secret formula locked away since 1885.</p>
+      <a href="shop.html" class="btn btn-primary">Shop Now →</a>
     </div>
   </div>
-
-  <!-- TICKER -->
-  <div class="ticker-strip">
-    <div class="ticker-inner" id="ticker">
-      <!-- doubled for seamless loop -->
-    </div>
-  </div>
-
-  <!-- FLAVORS SECTION -->
-  <section class="section" id="flavors">
-    <div class="section-header reveal">
-      <div>
-        <div class="section-tag">Product Line</div>
-        <h2>The Full <em>Lineup</em></h2>
-      </div>
-      <a href="#" class="btn btn-outline" style="margin-bottom: 0.5rem;">View All →</a>
-    </div>
-
-    <div class="flavors-grid">
-      <div class="flavor-card reveal">
-        <div class="flavor-accent" style="background: linear-gradient(to right, #C0392B, #8B1A1A);"></div>
-        <div class="flavor-bg" style="background: radial-gradient(ellipse at 50% 30%, #5C1010, #1A0505);"></div>
-        <div class="flavor-overlay"></div>
-        <div class="flavor-arrow">↗</div>
-        <div class="flavor-info">
-          <div class="flavor-tag">Original</div>
-          <div class="flavor-name">Dr Pepper</div>
-          <div class="flavor-desc">The original 23-flavor legend since 1885.</div>
-        </div>
-      </div>
-
-      <div class="flavor-card reveal reveal-delay-1">
-        <div class="flavor-accent" style="background: linear-gradient(to right, #1A4A8A, #0D2255);"></div>
-        <div class="flavor-bg" style="background: radial-gradient(ellipse at 50% 30%, #0A2240, #050D18);"></div>
-        <div class="flavor-overlay"></div>
-        <div class="flavor-arrow">↗</div>
-        <div class="flavor-info">
-          <div class="flavor-tag">Diet</div>
-          <div class="flavor-name">Diet Dr Pepper</div>
-          <div class="flavor-desc">All the flavor, zero sugar, zero compromise.</div>
-        </div>
-      </div>
-
-      <div class="flavor-card reveal reveal-delay-2">
-        <div class="flavor-accent" style="background: linear-gradient(to right, #2A7A3A, #144020);"></div>
-        <div class="flavor-bg" style="background: radial-gradient(ellipse at 50% 30%, #0A3015, #020D05);"></div>
-        <div class="flavor-overlay"></div>
-        <div class="flavor-arrow">↗</div>
-        <div class="flavor-info">
-          <div class="flavor-tag">Zero Sugar</div>
-          <div class="flavor-name">Dr Pepper Zero</div>
-          <div class="flavor-desc">Bold taste. Zero sugar. Maximum attitude.</div>
-        </div>
-      </div>
-
-      <div class="flavor-card reveal">
-        <div class="flavor-accent" style="background: linear-gradient(to right, #7A3A1A, #3D1A08);"></div>
-        <div class="flavor-bg" style="background: radial-gradient(ellipse at 50% 30%, #3A1808, #100503);"></div>
-        <div class="flavor-overlay"></div>
-        <div class="flavor-arrow">↗</div>
-        <div class="flavor-info">
-          <div class="flavor-tag">Flavor Fusion</div>
-          <div class="flavor-name">Cream Soda</div>
-          <div class="flavor-desc">Smooth, creamy, and unmistakably Dr Pepper.</div>
-        </div>
-      </div>
-
-      <div class="flavor-card reveal reveal-delay-1">
-        <div class="flavor-accent" style="background: linear-gradient(to right, #6A1A5A, #2D0A25);"></div>
-        <div class="flavor-bg" style="background: radial-gradient(ellipse at 50% 30%, #2D0A25, #0D0210);"></div>
-        <div class="flavor-overlay"></div>
-        <div class="flavor-arrow">↗</div>
-        <div class="flavor-info">
-          <div class="flavor-tag">Limited</div>
-          <div class="flavor-name">Dark Berry</div>
-          <div class="flavor-desc">A mysterious, dark twist on the classic.</div>
-        </div>
-      </div>
-
-      <div class="flavor-card reveal reveal-delay-2">
-        <div class="flavor-accent" style="background: linear-gradient(to right, #C8934A, #7A4A18);"></div>
-        <div class="flavor-bg" style="background: radial-gradient(ellipse at 50% 30%, #5A3010, #180D02);"></div>
-        <div class="flavor-overlay"></div>
-        <div class="flavor-arrow">↗</div>
-        <div class="flavor-info">
-          <div class="flavor-tag">Caffeinated</div>
-          <div class="flavor-name">Dr Pepper Bold</div>
-          <div class="flavor-desc">Extra caffeine for those who dare.</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- STORY SECTION -->
-  <section class="story-section" id="story">
-    <div class="story-inner">
-      <div class="story-text reveal">
-        <div class="section-tag">Our Heritage</div>
-        <h2>Born Bold.<br/><em>Still Going.</em></h2>
-        <p class="story-body">
-          Created by pharmacist Charles Alderton in Waco, Texas, Dr Pepper is America's oldest major soft drink brand. Alderton mixed his secret formula of 23 flavors at Wade Morrison's Old Corner Drug Store, and the world has never been the same.
-        </p>
-        <div class="timeline">
-          <div class="timeline-item">
-            <div class="timeline-year">1885</div>
-            <div class="timeline-divider"></div>
-            <div class="timeline-text">Charles Alderton invents Dr Pepper in Waco, Texas at Wade Morrison's Old Corner Drug Store.</div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-year">1904</div>
-            <div class="timeline-divider"></div>
-            <div class="timeline-text">Dr Pepper debuts to 20 million people at the World's Fair in St. Louis, Missouri.</div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-year">1951</div>
-            <div class="timeline-divider"></div>
-            <div class="timeline-text">The iconic "10-2-4" slogan takes America by storm, encouraging drinkers to enjoy Dr Pepper three times a day.</div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-year">2023</div>
-            <div class="timeline-divider"></div>
-            <div class="timeline-text">Dr Pepper surpasses Pepsi to become the #2 soft drink in America — a bold new chapter.</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="reveal reveal-delay-2" style="position: relative;">
-        <!-- Decorative large number -->
-        <div style="font-family: 'Playfair Display', serif; font-size: 14rem; font-weight: 900; color: rgba(139,26,26,0.15); line-height: 1; user-select: none;">23</div>
-        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
-          <div style="font-family: 'Playfair Display', serif; font-size: 3.5rem; font-weight: 900; color: var(--pepper-cream);">Flavors</div>
-          <div style="font-size: 0.85rem; color: rgba(245,230,216,0.5); margin-top: 0.5rem; letter-spacing: 0.15em; text-transform: uppercase;">in every sip</div>
-        </div>
-      </div>
-    </div>
-    <div class="deco-text">DR</div>
-  </section>
-
-  <!-- TICKER -->
-  <div class="ticker-strip" style="background: var(--pepper-red);">
-    <div class="ticker-inner" id="ticker2"></div>
-  </div>
-
-  <!-- INTERACTIVE MIXER -->
-  <section class="mixer-section" id="mixer">
-    <div class="mixer-inner">
-      <div class="reveal">
-        <div class="section-tag" style="text-align:center; margin-bottom: 0.8rem;">Create Your Blend</div>
-        <h2 style="margin-bottom: 0.75rem;">The Dr Pepper <em>Mixer</em></h2>
-        <p class="mixer-sub">Dial in your perfect Dr Pepper experience. Adjust the intensity sliders to discover your ideal blend.</p>
-      </div>
-
-      <div class="mixer-sliders reveal">
-        <div class="slider-group">
-          <label>Sweetness <span id="sweetVal">50%</span></label>
-          <input type="range" id="sweet" min="0" max="100" value="50"/>
-        </div>
-        <div class="slider-group">
-          <label>Bold Flavor <span id="boldVal">60%</span></label>
-          <input type="range" id="bold" min="0" max="100" value="60"/>
-        </div>
-        <div class="slider-group">
-          <label>Fizziness <span id="fizzVal">75%</span></label>
-          <input type="range" id="fizz" min="0" max="100" value="75"/>
-        </div>
-        <div class="slider-group">
-          <label>Cherry Kick <span id="cherryVal">30%</span></label>
-          <input type="range" id="cherry" min="0" max="100" value="30"/>
-        </div>
-      </div>
-
-      <div class="mixer-result reveal">
-        <div class="result-label">Your Blend Is</div>
-        <div class="result-name" id="resultName">The Classic Original</div>
-        <div class="result-desc" id="resultDesc">Sweet, bold, and perfectly balanced — you're a true Dr Pepper purist.</div>
-      </div>
-
-      <a href="#" class="btn btn-primary reveal" style="font-size: 0.9rem; padding: 1rem 2.5rem;">Order Your Blend →</a>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
   <footer>
     <div class="footer-inner">
-      <div>
-        <div class="footer-brand">Dr Pepper</div>
-        <p class="footer-tagline">America's original bold soft drink. 23 flavors. 140 years of being gloriously, uniquely itself.</p>
-      </div>
-      <div class="footer-col">
-        <h4>Products</h4>
-        <ul>
-          <li><a href="#">Original</a></li>
-          <li><a href="#">Diet</a></li>
-          <li><a href="#">Zero Sugar</a></li>
-          <li><a href="#">Cream Soda</a></li>
-          <li><a href="#">Dark Berry</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Company</h4>
-        <ul>
-          <li><a href="#">Our Story</a></li>
-          <li><a href="#">Sustainability</a></li>
-          <li><a href="#">Careers</a></li>
-          <li><a href="#">Press</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Connect</h4>
-        <ul>
-          <li><a href="#">Instagram</a></li>
-          <li><a href="#">Twitter / X</a></li>
-          <li><a href="#">Facebook</a></li>
-          <li><a href="#">TikTok</a></li>
-        </ul>
-      </div>
+      <div><div class="footer-brand">Dr Pepper</div><p class="footer-tagline">America's original bold soft drink. 23 flavors. 140 years of being gloriously, uniquely itself.</p></div>
+      <div class="footer-col"><h4>Products</h4><ul><li><a href="flavors.html">Original</a></li><li><a href="flavors.html">Diet</a></li><li><a href="flavors.html">Zero Sugar</a></li><li><a href="flavors.html">Cream Soda</a></li></ul></div>
+      <div class="footer-col"><h4>Company</h4><ul><li><a href="story.html">Our Story</a></li><li><a href="mixer.html">Mixer</a></li><li><a href="shop.html">Shop</a></li></ul></div>
+      <div class="footer-col"><h4>Connect</h4><ul><li><a href="#">Instagram</a></li><li><a href="#">Twitter</a></li><li><a href="#">TikTok</a></li></ul></div>
     </div>
-    <div class="footer-bottom">
-      <div class="footer-copy">© 2025 Dr Pepper. All rights reserved. Fan-made concept site.</div>
-      <div class="footer-copy">Privacy · Terms · Accessibility</div>
-    </div>
+    <div class="footer-bottom"><div class="footer-copy">© 2025 Dr Pepper Fan Site. Not affiliated with Keurig Dr Pepper.</div><div class="footer-copy">Fan-made concept</div></div>
   </footer>
-
-  <!-- Three.js 3D Can -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script>
-  (function() {
-    const canvas = document.getElementById('canCanvas');
-    const W = 340, H = 480;
-    canvas.width = W * window.devicePixelRatio;
-    canvas.height = H * window.devicePixelRatio;
-
-    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
-    renderer.setPixelRatio(window.devicePixelRatio);
-    renderer.setSize(W, H);
-    renderer.shadowMap.enabled = true;
-    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-    renderer.outputEncoding = THREE.sRGBEncoding;
-    renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.2;
-
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(35, W / H, 0.1, 100);
-    camera.position.set(0, 0.3, 5.5);
-    camera.lookAt(0, 0, 0);
-
-    // ── Lights ──
-    const ambient = new THREE.AmbientLight(0xffeedd, 0.5);
-    scene.add(ambient);
-
-    const keyLight = new THREE.DirectionalLight(0xffffff, 2.5);
-    keyLight.position.set(3, 5, 4);
-    keyLight.castShadow = true;
-    scene.add(keyLight);
-
-    const fillLight = new THREE.DirectionalLight(0xff9966, 0.8);
-    fillLight.position.set(-4, 1, 2);
-    scene.add(fillLight);
-
-    const rimLight = new THREE.DirectionalLight(0xffd9b0, 1.2);
-    rimLight.position.set(0, -3, -4);
-    scene.add(rimLight);
-
-    const topLight = new THREE.PointLight(0xffccaa, 1.5, 10);
-    topLight.position.set(0, 4, 2);
-    scene.add(topLight);
-
-    // ── Build the Dr Pepper label texture ──
-    function makeLabel() {
-      const tw = 1024, th = 1024;
-      const c = document.createElement('canvas');
-      c.width = tw; c.height = th;
-      const ctx = c.getContext('2d');
-
-      // Base gradient: dark red left, bright red center, dark right
-      const bg = ctx.createLinearGradient(0, 0, tw, 0);
-      bg.addColorStop(0,    '#5A0A0A');
-      bg.addColorStop(0.18, '#8B1A1A');
-      bg.addColorStop(0.40, '#C0392B');
-      bg.addColorStop(0.60, '#A52020');
-      bg.addColorStop(0.82, '#7B1212');
-      bg.addColorStop(1,    '#4A0808');
-      ctx.fillStyle = bg;
-      ctx.fillRect(0, 0, tw, th);
-
-      // Dark top band
-      ctx.fillStyle = '#3D0808';
-      ctx.fillRect(0, 0, tw, th * 0.10);
-
-      // Dark bottom band
-      ctx.fillStyle = '#3D0808';
-      ctx.fillRect(0, th * 0.88, tw, th * 0.12);
-
-      // White diagonal stripe
-      ctx.save();
-      ctx.globalAlpha = 0.92;
-      ctx.fillStyle = '#ffffff';
-      ctx.beginPath();
-      ctx.moveTo(0, th * 0.30);
-      ctx.lineTo(tw, th * 0.265);
-      ctx.lineTo(tw, th * 0.315);
-      ctx.lineTo(0, th * 0.352);
-      ctx.closePath();
-      ctx.fill();
-      ctx.restore();
-
-      // ── "Dr Pepper" text ──
-      // "Dr" in italic script style
-      ctx.save();
-      ctx.textAlign = 'center';
-      ctx.shadowColor = 'rgba(0,0,0,0.5)';
-      ctx.shadowBlur = 8;
-
-      // Italic "Dr" word
-      ctx.font = 'italic bold 110px Georgia, serif';
-      ctx.fillStyle = '#ffffff';
-      ctx.fillText('Dr', tw / 2, th * 0.52);
-
-      // "PEPPER" in bold caps
-      ctx.font = 'bold 118px Georgia, serif';
-      ctx.letterSpacing = '8px';
-      ctx.fillStyle = '#ffffff';
-      ctx.fillText('PEPPER', tw / 2, th * 0.68);
-      ctx.restore();
-
-      // Subtle shine overlay
-      const shine = ctx.createLinearGradient(tw * 0.25, 0, tw * 0.55, 0);
-      shine.addColorStop(0,   'rgba(255,255,255,0)');
-      shine.addColorStop(0.4, 'rgba(255,255,255,0.08)');
-      shine.addColorStop(0.5, 'rgba(255,255,255,0.16)');
-      shine.addColorStop(0.6, 'rgba(255,255,255,0.06)');
-      shine.addColorStop(1,   'rgba(255,255,255,0)');
-      ctx.fillStyle = shine;
-      ctx.fillRect(0, 0, tw, th);
-
-      const tex = new THREE.CanvasTexture(c);
-      tex.encoding = THREE.sRGBEncoding;
-      return tex;
-    }
-
-    const labelTex = makeLabel();
-
-    // ── Can geometry ──
-    // CylinderGeometry: radiusTop, radiusBottom, height, radialSegs, heightSegs, openEnded
-    const bodyGeo = new THREE.CylinderGeometry(0.82, 0.82, 2.6, 128, 1, true);
-    const bodyMat = new THREE.MeshStandardMaterial({
-      map: labelTex,
-      roughness: 0.25,
-      metalness: 0.55,
-      envMapIntensity: 1.0,
-    });
-    const body = new THREE.Mesh(bodyGeo, bodyMat);
-    scene.add(body);
-
-    // Top cap (aluminum)
-    const topCapGeo = new THREE.CylinderGeometry(0.82, 0.82, 0.04, 64);
-    const alMat = new THREE.MeshStandardMaterial({ color: 0xcccccc, roughness: 0.2, metalness: 0.95 });
-    const topCap = new THREE.Mesh(topCapGeo, alMat);
-    topCap.position.y = 1.32;
-    scene.add(topCap);
-
-    // Tapered neck (top)
-    const neckTopGeo = new THREE.CylinderGeometry(0.52, 0.82, 0.28, 64, 1, true);
-    const neckTop = new THREE.Mesh(neckTopGeo, alMat);
-    neckTop.position.y = 1.46;
-    scene.add(neckTop);
-
-    // Lid disc
-    const lidGeo = new THREE.CylinderGeometry(0.52, 0.52, 0.04, 64);
-    const lid = new THREE.Mesh(lidGeo, alMat);
-    lid.position.y = 1.62;
-    scene.add(lid);
-
-    // Pull tab ring
-    const tabRingGeo = new THREE.TorusGeometry(0.14, 0.025, 12, 40);
-    const tabMat = new THREE.MeshStandardMaterial({ color: 0xbbbbbb, roughness: 0.15, metalness: 1.0 });
-    const tabRing = new THREE.Mesh(tabRingGeo, tabMat);
-    tabRing.position.set(0, 1.68, 0.2);
-    tabRing.rotation.x = Math.PI / 2.2;
-    scene.add(tabRing);
-
-    // Pull tab lever
-    const tabGeo = new THREE.BoxGeometry(0.22, 0.04, 0.35);
-    const tab = new THREE.Mesh(tabGeo, tabMat);
-    tab.position.set(0, 1.71, 0.05);
-    tab.rotation.x = -0.2;
-    scene.add(tab);
-
-    // Bottom tapered
-    const neckBotGeo = new THREE.CylinderGeometry(0.82, 0.70, 0.22, 64, 1, true);
-    const neckBot = new THREE.Mesh(neckBotGeo, alMat);
-    neckBot.position.y = -1.41;
-    scene.add(neckBot);
-
-    // Bottom cap
-    const botCapGeo = new THREE.CylinderGeometry(0.70, 0.70, 0.04, 64);
-    const botCap = new THREE.Mesh(botCapGeo, alMat);
-    botCap.position.y = -1.53;
-    scene.add(botCap);
-
-    // Group everything
-    const canGroup = new THREE.Group();
-    canGroup.add(body, topCap, neckTop, lid, tabRing, tab, neckBot, botCap);
-    canGroup.position.y = -0.1;
-    scene.add(canGroup);
-
-    // ── Mouse parallax ──
-    let targetRotY = 0, targetRotX = 0;
-    let currentRotY = 0, currentRotX = 0;
-
-    document.addEventListener('mousemove', e => {
-      const nx = (e.clientX / window.innerWidth)  * 2 - 1;
-      const ny = (e.clientY / window.innerHeight) * 2 - 1;
-      targetRotY =  nx * 0.6;
-      targetRotX = -ny * 0.2;
-    });
-
-    // ── Animate ──
-    let t = 0;
-    function animate() {
-      requestAnimationFrame(animate);
-      t += 0.012;
-
-      // Smooth lerp
-      currentRotY += (targetRotY - currentRotY) * 0.04;
-      currentRotX += (targetRotX - currentRotX) * 0.04;
-
-      canGroup.rotation.y = currentRotY + t * 0.4;
-      canGroup.rotation.x = currentRotX * 0.3;
-
-      // Float up/down
-      canGroup.position.y = Math.sin(t * 0.9) * 0.12 - 0.1;
-
-      // Subtle tilt
-      canGroup.rotation.z = Math.sin(t * 0.6) * 0.04;
-
-      renderer.render(scene, camera);
-    }
-    animate();
-  })();
-  </script>
-
-  <script>
-    // Custom cursor
-    const cursor = document.getElementById('cursor');
-    const ring = document.getElementById('cursorRing');
-    let mx = 0, my = 0, rx = 0, ry = 0;
-
-    document.addEventListener('mousemove', e => {
-      mx = e.clientX; my = e.clientY;
-      cursor.style.transform = `translate(${mx - 6}px, ${my - 6}px)`;
-    });
-
-    function animRing() {
-      rx += (mx - rx) * 0.12;
-      ry += (my - ry) * 0.12;
-      ring.style.transform = `translate(${rx - 18}px, ${ry - 18}px)`;
-      requestAnimationFrame(animRing);
-    }
-    animRing();
-
-    document.querySelectorAll('a, button, input[type="range"], .flavor-card').forEach(el => {
-      el.addEventListener('mouseenter', () => ring.classList.add('hovered'));
-      el.addEventListener('mouseleave', () => ring.classList.remove('hovered'));
-    });
-
-    // Bubbles
-    const bubblesEl = document.getElementById('bubbles');
-    for (let i = 0; i < 18; i++) {
-      const b = document.createElement('div');
-      b.className = 'bubble';
-      const size = Math.random() * 80 + 20;
-      b.style.cssText = `
-        width: ${size}px; height: ${size}px;
-        left: ${Math.random() * 100}%;
-        animation-duration: ${Math.random() * 8 + 6}s;
-        animation-delay: ${Math.random() * 8}s;
-      `;
-      bubblesEl.appendChild(b);
-    }
-
-    // Ticker
-    const tickerItems = ['Dr Pepper · Original', '23 Flavors', 'Since 1885', 'Diet Dr Pepper', 'Zero Sugar', 'Cream Soda', 'Dark Berry', 'Bold · Unique · Iconic'];
-    function buildTicker(id) {
-      const ticker = document.getElementById(id);
-      let html = '';
-      for (let i = 0; i < 2; i++) {
-        tickerItems.forEach(item => {
-          html += `<span class="ticker-item">${item}</span><span class="ticker-item ticker-dot">●</span>`;
-        });
-      }
-      ticker.innerHTML = html;
-    }
-    buildTicker('ticker');
-    buildTicker('ticker2');
-
-    // Scroll reveal
-    const reveals = document.querySelectorAll('.reveal');
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.12 });
-    reveals.forEach(el => obs.observe(el));
-
-    // Count-up stats
-    function countUp(el, target, duration = 1800) {
-      let start = null;
-      const startVal = parseInt(el.textContent) || 0;
-      function step(ts) {
-        if (!start) start = ts;
-        const progress = Math.min((ts - start) / duration, 1);
-        const ease = 1 - Math.pow(1 - progress, 3);
-        el.textContent = Math.round(startVal + (target - startVal) * ease);
-        if (progress < 1) requestAnimationFrame(step);
-      }
-      requestAnimationFrame(step);
-    }
-
-    const statObs = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          const target = parseInt(e.target.getAttribute('data-count'));
-          countUp(e.target, target);
-          statObs.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.5 });
-    document.querySelectorAll('[data-count]').forEach(el => statObs.observe(el));
-
-    // Interactive Mixer
-    const mixerCombos = [
-      { sweet: [0,40], bold: [0,50], fizz: [0,60], cherry: [0,40], name: "The Mellow Sip", desc: "Light, barely-there — a ghost of a drink for the faint of heart." },
-      { sweet: [60,100], bold: [0,40], fizz: [60,100], cherry: [0,30], name: "The Sugar Rush", desc: "Sweet, bubbly chaos. Perfect for those who like their drinks bright and bouncy." },
-      { sweet: [40,70], bold: [50,80], fizz: [50,90], cherry: [0,30], name: "The Classic Original", desc: "Sweet, bold, and perfectly balanced — you're a true Dr Pepper purist." },
-      { sweet: [30,60], bold: [70,100], fizz: [40,80], cherry: [0,30], name: "The Bold Statement", desc: "Strong, assertive, unapologetically intense. You don't drink Dr Pepper — you experience it." },
-      { sweet: [40,70], bold: [40,70], fizz: [40,80], cherry: [60,100], name: "The Cherry Bomb", desc: "A bright, fruity twist that hits like a firecracker and lingers like a legend." },
-      { sweet: [20,50], bold: [60,100], fizz: [20,60], cherry: [50,100], name: "The Dark Knight", desc: "Deep, moody, complex. A sophisticated palate for a sophisticated Dr Pepper drinker." },
-      { sweet: [70,100], bold: [60,100], fizz: [70,100], cherry: [60,100], name: "The Legend", desc: "Maximum everything. You've unlocked the full Dr Pepper experience. Respect." },
-    ];
-
-    function updateMixer() {
-      const s = parseInt(document.getElementById('sweet').value);
-      const b = parseInt(document.getElementById('bold').value);
-      const f = parseInt(document.getElementById('fizz').value);
-      const c = parseInt(document.getElementById('cherry').value);
-
-      document.getElementById('sweetVal').textContent = s + '%';
-      document.getElementById('boldVal').textContent = b + '%';
-      document.getElementById('fizzVal').textContent = f + '%';
-      document.getElementById('cherryVal').textContent = c + '%';
-
-      let best = mixerCombos[2];
-      let bestScore = -Infinity;
-
-      mixerCombos.forEach(combo => {
-        let score = 0;
-        if (s >= combo.sweet[0] && s <= combo.sweet[1]) score++;
-        if (b >= combo.bold[0] && b <= combo.bold[1]) score++;
-        if (f >= combo.fizz[0] && f <= combo.fizz[1]) score++;
-        if (c >= combo.cherry[0] && c <= combo.cherry[1]) score++;
-        if (score > bestScore) { bestScore = score; best = combo; }
-      });
-
-      document.getElementById('resultName').textContent = best.name;
-      document.getElementById('resultDesc').textContent = best.desc;
-    }
-
-    ['sweet','bold','fizz','cherry'].forEach(id => {
-      document.getElementById(id).addEventListener('input', updateMixer);
-    });
-    updateMixer();
+    (function(){const canvas=document.getElementById('canCanvas'),W=320,H=460;canvas.width=W*devicePixelRatio;canvas.height=H*devicePixelRatio;const renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true});renderer.setPixelRatio(devicePixelRatio);renderer.setSize(W,H);renderer.outputEncoding=THREE.sRGBEncoding;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.2;const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(35,W/H,.1,100);camera.position.set(0,.3,5.5);camera.lookAt(0,0,0);scene.add(new THREE.AmbientLight(0xffeedd,.5));const kl=new THREE.DirectionalLight(0xffffff,2.5);kl.position.set(3,5,4);scene.add(kl);const fl=new THREE.DirectionalLight(0xff9966,.8);fl.position.set(-4,1,2);scene.add(fl);const rl=new THREE.DirectionalLight(0xffd9b0,1.2);rl.position.set(0,-3,-4);scene.add(rl);function makeLabel(){const c=document.createElement('canvas');c.width=1024;c.height=1024;const ctx=c.getContext('2d');const bg=ctx.createLinearGradient(0,0,1024,0);bg.addColorStop(0,'#5A0A0A');bg.addColorStop(.18,'#8B1A1A');bg.addColorStop(.4,'#C0392B');bg.addColorStop(.6,'#A52020');bg.addColorStop(.82,'#7B1212');bg.addColorStop(1,'#4A0808');ctx.fillStyle=bg;ctx.fillRect(0,0,1024,1024);ctx.fillStyle='#3D0808';ctx.fillRect(0,0,1024,102);ctx.fillRect(0,900,1024,124);ctx.globalAlpha=.92;ctx.fillStyle='#fff';ctx.beginPath();ctx.moveTo(0,307);ctx.lineTo(1024,271);ctx.lineTo(1024,322);ctx.lineTo(0,360);ctx.closePath();ctx.fill();ctx.globalAlpha=1;ctx.textAlign='center';ctx.shadowColor='rgba(0,0,0,.5)';ctx.shadowBlur=8;ctx.font='italic bold 110px Georgia,serif';ctx.fillStyle='#fff';ctx.fillText('Dr',512,532);ctx.font='bold 115px Georgia,serif';ctx.fillText('PEPPER',512,690);const shine=ctx.createLinearGradient(256,0,563,0);shine.addColorStop(0,'rgba(255,255,255,0)');shine.addColorStop(.4,'rgba(255,255,255,.08)');shine.addColorStop(.5,'rgba(255,255,255,.18)');shine.addColorStop(.6,'rgba(255,255,255,.06)');shine.addColorStop(1,'rgba(255,255,255,0)');ctx.fillStyle=shine;ctx.fillRect(0,0,1024,1024);const t=new THREE.CanvasTexture(c);t.encoding=THREE.sRGBEncoding;return t;}
+    const alMat=new THREE.MeshStandardMaterial({color:0xcccccc,roughness:.2,metalness:.95}),bodyMat=new THREE.MeshStandardMaterial({map:makeLabel(),roughness:.25,metalness:.55}),grp=new THREE.Group();
+    grp.add(new THREE.Mesh(new THREE.CylinderGeometry(.82,.82,2.6,128,1,true),bodyMat));
+    [[[.82,.82,.04,64],alMat,[0,1.32,0]],[[.52,.82,.28,64,1,true],alMat,[0,1.46,0]],[[.52,.52,.04,64],alMat,[0,1.62,0]],[[.82,.70,.22,64,1,true],alMat,[0,-1.41,0]],[[.70,.70,.04,64],alMat,[0,-1.53,0]]].forEach(([g,m,p])=>{const mesh=new THREE.Mesh(new THREE.CylinderGeometry(...g),m);mesh.position.set(...p);grp.add(mesh);});
+    const tab=new THREE.Mesh(new THREE.TorusGeometry(.14,.025,12,40),alMat);tab.position.set(0,1.68,.2);tab.rotation.x=Math.PI/2.2;grp.add(tab);
+    grp.position.y=-.1;scene.add(grp);
+    let tx=0,ty=0,cx=0,cy=0,t=0;
+    document.addEventListener('mousemove',e=>{tx=(e.clientX/innerWidth)*2-1;ty=(e.clientY/innerHeight)*2-1;});
+    (function animate(){requestAnimationFrame(animate);t+=.012;cx+=(tx-cx)*.04;cy+=(ty-cy)*.04;grp.rotation.y=cx*.6+t*.4;grp.rotation.x=cy*-.06;grp.position.y=Math.sin(t*.9)*.12-.1;grp.rotation.z=Math.sin(t*.6)*.04;renderer.render(scene,camera);})();})();
+    const cur=document.getElementById('cursor'),ring=document.getElementById('cursorRing');let mx=0,my=0,rx=0,ry=0;
+    document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.transform=`translate(${mx-6}px,${my-6}px)`;});
+    (function animR(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.transform=`translate(${rx-18}px,${ry-18}px)`;requestAnimationFrame(animR);})();
+    document.querySelectorAll('a,button,.card').forEach(el=>{el.addEventListener('mouseenter',()=>ring.classList.add('hovered'));el.addEventListener('mouseleave',()=>ring.classList.remove('hovered'));});
+    const bb=document.getElementById('bubbles');for(let i=0;i<16;i++){const b=document.createElement('div');b.className='bubble';const s=Math.random()*70+20;b.style.cssText=`width:${s}px;height:${s}px;left:${Math.random()*100}%;animation-duration:${Math.random()*8+6}s;animation-delay:${Math.random()*8}s;`;bb.appendChild(b);}
+    const items=['Dr Pepper · Original','23 Flavors','Since 1885','Diet Dr Pepper','Zero Sugar','Cream Soda','Dark Berry','Bold · Unique · Iconic'];const tk=document.getElementById('ticker');let h='';for(let i=0;i<2;i++)items.forEach(it=>{h+=`<span class="ticker-item">${it}</span><span class="ticker-item">·</span>`;});tk.innerHTML=h;
+    function countUp(el,target){let s=null;function step(ts){if(!s)s=ts;const p=Math.min((ts-s)/1800,1),e=1-Math.pow(1-p,3);el.textContent=Math.round(target*e);if(p<1)requestAnimationFrame(step);}requestAnimationFrame(step);}
+    const so=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){countUp(e.target,parseInt(e.target.dataset.count));so.unobserve(e.target);}});},{threshold:.5});document.querySelectorAll('[data-count]').forEach(el=>so.observe(el));
+    const ro=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.12});document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
   </script>
 </body>
 </html>
